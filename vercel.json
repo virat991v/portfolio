@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npm ci --prefix Aryan-Portfolio",
+  "buildCommand": "npm run typecheck --prefix Aryan-Portfolio && npm run build --prefix Aryan-Portfolio",
+  "outputDirectory": "Aryan-Portfolio/dist"
+}
