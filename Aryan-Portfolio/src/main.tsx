@@ -1,3 +1,5 @@
+import {GlowCard} from '../components/ui/spotlight-card';
+import MetroHero from '../components/ui/scroll-locked-video-hero';
 import React from 'react';
 import {createRoot} from 'react-dom/client';
 import ContributionSkyline from '../components/ui/contribution-skyline';
@@ -11,3 +13,10 @@ const sections:FXSection[]=[
 class Boundary extends React.Component<{children:React.ReactNode;fallback:React.ReactNode},{failed:boolean}>{state={failed:false};static getDerivedStateFromError(){return {failed:true}}render(){return this.state.failed?this.props.fallback:this.props.children}}
 const work=document.getElementById('scroll-fx-root');if(work)createRoot(work).render(<Boundary fallback={<p className="widget-error">Explore all four projects on <a href="https://github.com/virat991v">GitHub ↗</a>.</p>}><FullScreenScrollFX sections={sections}/></Boundary>);
 const skyline=document.getElementById('skyline-root');if(skyline)createRoot(skyline).render(<Boundary fallback={<p className="widget-error">Activity chart unavailable. <a href="https://github.com/virat991v">View my GitHub profile ↗</a></p>}><ContributionSkyline data={activity.days} endDate={activity.days.at(-1)?.date} palette="ember" defaultView="3d" title="A year of building, one day at a time." footer={<>GitHub activity snapshot · Updated {new Date(activity.updatedAt).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})} · <a href="https://github.com/virat991v" target="_blank" rel="noopener noreferrer">View profile ↗</a></>} /></Boundary>);
+
+const glow=document.getElementById('glow-values-root');if(glow)createRoot(glow).render(<div className="glow-values">{[
+['01 / PURPOSE','Real problems. Practical solutions.','From recovering lost belongings to reusing textbooks, I build around needs I see in student life.'],
+['02 / CRAFT','From the first frame to the frontend.','I connect interface design in Figma with responsive, reusable components in code.'],
+['03 / MINDSET','Own the work. Learn together.','Independent projects teach me ownership. Team projects teach me how to collaborate.']
+].map(([label,title,copy])=><GlowCard key={label} customSize glowColor="orange"><span>{label}</span><h3>{title}</h3><p>{copy}</p></GlowCard>)}</div>);
+const film=document.getElementById('video-hero-root');if(film)createRoot(film).render(<Boundary fallback={<p className="widget-error"><a href="#work">Explore selected projects ↓</a></p>}><MetroHero/></Boundary>);
