@@ -19,3 +19,13 @@ src/contributions.json is a dated snapshot from the public GitHub contributions 
 
 ## Accessibility
 Project buttons, previous/next, skip-showcase link, 2D/3D toggle, keyboard canvas controls and reduced-motion support are included. Browser QA was unavailable in the managed execution environment; TypeScript, production bundling, contribution aggregation and asset/anchor checks were performed.
+
+## Spotlight cards and video hero
+
+`components/ui/spotlight-card.tsx` exports `GlowCard`. The About section supplies three real text cards with `customSize` and `glowColor="orange"`. Pointer coordinates are local to each card; touch scrolling is preserved. Children are required. The component needs React only.
+
+`components/ui/scroll-locked-video-hero.tsx` exports `MetroHero`. Its scroll-scrubbed video sits immediately before the selected projects; it uses native scrolling with a sticky stage, and provides a Skip to projects link. Mobile and reduced-motion visitors see a static portrait. A video error also falls back to the portrait. The default footage is the remote CDN URL from the supplied component; replace `videoSrc` with a local licensed video for complete asset ownership.
+
+Both components mount in `src/main.tsx`; styles are in `src/widgets.css`. React, TypeScript, Tailwind CSS and shadcn-compatible aliases are already configured. `components/ui` is the shared reusable component directory, allowing imports such as `@/components/ui/spotlight-card`. No extra provider, state library, icon package, or stock photo is needed; the portfolio keeps the supplied personal photo and project screenshots.
+
+Deployment uses `vercel.json` (Other preset, `npm ci`, typecheck/build, output `dist`). Parent-folder configuration supports deploying the entire GitHub repository too.
